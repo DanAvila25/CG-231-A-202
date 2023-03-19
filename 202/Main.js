@@ -30,9 +30,9 @@ function init() {
     var arrowZ = new THREE.ArrowHelper( z, origin, arrowSize, colorB );
         
     //Cámara
-    camera.position.x = 000;
+    camera.position.x = 100;
     camera.position.y = 100;
-    camera.position.z = 300;
+    camera.position.z = 200;
     camera.lookAt(scene.position);
 
     //Creación de las Figuras
@@ -53,7 +53,6 @@ function init() {
         material.push = (new THREE.ParticleBasicMaterial(color[i]));
     }
 
-
     //Figuras para las piramides
     piramide = [];
     vt = [0,0,0];
@@ -70,22 +69,6 @@ function init() {
     RotacionRealY(piramide[2],vt,(Grados_a_Radianes(45)));
     RotacionRealZ(piramide[3],vt,(Grados_a_Radianes(45)));
     
-
-    /*
-    //Escalado
-    vp = [2,2,2];
-    vs = [2,2,2];
-
-    EscaladoReal(piramide[2],vp,vs);
-
-    //Traslacion
-    vt = [50,0,50]
-    TraslacionReal(piramide[3],vt);
-    */
-
-
-
-
     // En el documento HTML
     document.body.appendChild(renderer.domElement);
 

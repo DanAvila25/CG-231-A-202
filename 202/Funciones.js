@@ -1,3 +1,8 @@
+/**
+ * Grados_a_Radianes: Convierte un angulo en grados a radianes
+ * Entradas: grados = valor de angulo en grados
+ * Salidas:  grados * (pi/180) = Realiza la operacion de conversion y retorna el valor
+ */
 function Grados_a_Radianes(grados)
 {
   var pi = Math.PI;
@@ -7,7 +12,7 @@ function Grados_a_Radianes(grados)
 /**
  * Geometria: Construye una geometria threejs y la retorna
  * Entradas: vx = Arreglo de vertices para la geometria: (Arreglo de arreglos)
- * Salidas:  geom = Geometria generada a partir de vx
+ * Salidas:  Geom = Geometria generada a partir de vx
  */
 function Geometria(vx) {
     Geom = new THREE.Geometry();
@@ -34,7 +39,11 @@ function Traslacion(vt) {
                 0, 0, 0, 1);
     return matrizT;
 }
-
+/**
+ * TraslacionReal: Construye la matriz de traslacion a partir del objeto "obj"
+ * Entradas: obj = Objeto tipo Three.line que represental en objeto grafico
+ *           vt = vector traslacion (array de numeros enteros)
+ */
 function TraslacionReal(obj, vt) {
 
     obj.applyMatrix(Traslacion(vt));
@@ -55,11 +64,10 @@ function Escalado(vs) {
 }
 
 /**
- * EscaladoReal: Construye la matriz de escalado a partir del objeto fig
- * Entradas: fig = Objeto tipo Three.line que represental en objeto grafico
- *           posini = Posicion incial de fig (array de enteros)
+ * EscaladoReal: Construye la matriz de escalado a partir del objeto "obj"
+ * Entradas: obj = Objeto tipo Three.line que represental en objeto grafico
+ *           vp = Posicion incial de fig (array de enteros)
  *           vs = vector de escalado  (array de numeros enteros)
- * Salidas:  matrizS = Matriz de escalado para el vector vs
  */
 function EscaladoReal(obj, vp, vs) {
     vt = [-vp[0],-vp[1],-vp[2]]; //Vector para llegar al origen
@@ -67,7 +75,11 @@ function EscaladoReal(obj, vp, vs) {
     obj.applyMatrix(Escalado(vs));
     obj.applyMatrix(Traslacion(vp));
 }
-
+/**
+ * RotacionX: Construye la matriz de rotacion para el eje X a partir del angulo
+ * Entradas: angle = angulo de rotacion en el eje X
+ * Salidas:  matrizRx = Matriz de rotacion para el angulo "angle"
+ */
 function RotacionX(angle){
     var matrizRx = new THREE.Matrix4();
     var alpha = angle;
@@ -80,7 +92,11 @@ function RotacionX(angle){
                  0,  0,   0, 1);
     return matrizRx
 }
-
+/**
+ * RotacionY: Construye la matriz de rotacion para el eje Y a partir del angulo
+ * Entradas: angle = angulo de rotacion en el eje Y
+ * Salidas:  matrizRy = Matriz de rotacion para el angulo "angle"
+ */
 function RotacionY(angle){
     var matrizRy = new THREE.Matrix4();
     var alpha = angle;
@@ -93,7 +109,11 @@ function RotacionY(angle){
                    0,  0,  0, 1);
     return matrizRy
 }
-
+/**
+ * RotacionZ: Construye la matriz de rotacion para el eje Z a partir del angulo
+ * Entradas: angle = angulo de rotacion en el eje Z
+ * Salidas:  matrizRz = Matriz de rotacion para el angulo "angle"
+ */
 function RotacionZ(angle){
     var matrizRz = new THREE.Matrix4();
     var alpha = angle;
@@ -106,34 +126,43 @@ function RotacionZ(angle){
                     0,   0,  0, 1);
     return matrizRz
 }
-
+/**
+ * RotacionRealX: Aplica las funciones para la rotacion X a partir del objeto "obj"
+ *                no retorna nada pues se imprime directamente desde esta funcion.
+ * Entradas: obj = Objeto tipo Three.line que represental en objeto grafico
+ *           vp = Posicion incial de fig (array de enteros)
+ *           angle = angulo de rotacion en el eje X
+ */
 function RotacionRealX(obj, vp, angle){
     vt = [-vp[0],-vp[1],vp[2]];
     obj.applyMatrix(Traslacion(vt));
     obj.applyMatrix(RotacionX(angle));
     obj.applyMatrix(Traslacion(vp));
 }
+/**
+ * RotacionRealY: Aplica las funciones para la rotacion Y a partir del objeto "obj"
+ *                no retorna nada pues se imprime directamente desde esta funcion.
+ * Entradas: obj = Objeto tipo Three.line que represental en objeto grafico
+ *           vp = Posicion incial de fig (array de enteros)
+ *           angle = angulo de rotacion en el eje Y
+ */
 function RotacionRealY(obj, vp, angle){
     vt = [-vp[0],-vp[1],vp[2]];
     obj.applyMatrix(Traslacion(vt));
     obj.applyMatrix(RotacionY(angle));
     obj.applyMatrix(Traslacion(vp));
 }
+/**
+ * RotacionRealZ: Aplica las funciones para la rotacion Z a partir del objeto "obj"
+ *                no retorna nada pues se imprime directamente desde esta funcion.
+ * Entradas: obj = Objeto tipo Three.line que represental en objeto grafico
+ *           vp = Posicion incial de fig (array de enteros)
+ *           angle = angulo de rotacion en el eje Z
+ */
 function RotacionRealZ(obj, vp, angle){
     vt = [-vp[0],-vp[1],vp[2]];
     obj.applyMatrix(Traslacion(vt));
     obj.applyMatrix(RotacionZ(angle));
     obj.applyMatrix(Traslacion(vp));
 }
-
-/*
-function RotacionReal(objeto, vposini, angulo, eje){
-    eje = X, Y, Z;
-    objeto = obj;
-    vposini = vs;
-    angulo = angle;
-    X = RotacionRealX(obj, vp, angle);
-    Y = RotacionRealY(obj, vp, angle);
-    Z = RotacionRealZ(obj, vp, angle);
-}*/
 
